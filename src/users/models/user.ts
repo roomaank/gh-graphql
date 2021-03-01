@@ -6,10 +6,10 @@ export class User {
     @Field()
     userId: string;
 
-    @Field()
+    @Field({nullable: true})
     email: string;
 
-    @Field(() => Int)
+    @Field({nullable: true})
     age: number;
 
     @Field({nullable: true})

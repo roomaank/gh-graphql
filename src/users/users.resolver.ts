@@ -7,6 +7,11 @@ import { UsersService } from './user.service';
 import { User } from './models/user';
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
 
+interface CreateUserPayload {
+    success: boolean;
+    error?: string
+}
+
 @Resolver(() => User)
 export class UsersResolver {
 
@@ -23,7 +28,8 @@ export class UsersResolver {
     }
 
     @Mutation(() => User)
-    createUser(@Args('createUserData') createUserData: CreateUserInput ): User {
+    createUser(@Args('createUserData') createUserData: CreateUserInput ): CreateUserPayload {
+        console.log('123',createUserData);
         return this.usersService.createUser(createUserData);
     }
 

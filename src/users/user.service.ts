@@ -7,19 +7,25 @@ import { v4 as uuidv4 } from 'uuid';
 import { User } from './models/user';
 import { CreateUserInput } from './dto/input/create-user.input';
 
+interface CreateUserPayload {
+    success: boolean;
+    error?: string
+}
+
 @Injectable()
 export class UsersService {
     private users: User[] = [];
 
-    public createUser(createUserData: CreateUserInput): User {
+    public createUser(createUserData: CreateUserInput): CreateUserPayload {
         const user: User = {
             userId: uuidv4(),
             ...createUserData
         }
-
-        this.users.push(user);
-
-        return user;
+        console.log('user', user);
+        
+        return {
+            success: true
+        }
     }
 
     public getUsers(getUsersArgs: GetUsersArgs): User[] {
